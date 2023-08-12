@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>E-Commerce Store</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+#cart {
+    background-color: #f39c12;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+</style>
+<body>
+    <header>
+        <h1>E-Commerce Store</h1>
+        <div id="cart">
+            <span>Cart: 0 items</span>
+        </div>
+    </header>
+    <main id="product-list">
+        <!-- Product cards will be dynamically added here using JavaScript -->
+    </main>
+    <script>const products = [
+    { id: 1, name: "Product 1", price: 10 },
+    { id: 2, name: "Product 2", price: 15 },
+    { id: 3, name: "Product 3", price: 20 },
+    // Add more products here
+];
+
+const productList = document.getElementById("product-list");
+const cart = document.getElementById("cart");
+let cartItems = 0;
+
+products.forEach(product => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+    productCard.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>Price: $${product.price}</p>
+        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+    `;
+    productList.appendChild(productCard);
+
+    const addToCartButton = productCard.querySelector(".add-to-cart");
+    addToCartButton.addEventListener("click", () => {
+        cartItems++;
+        cart.textContent = `Cart: ${cartItems} items`;
+    });
+});
+</script>
+</body>
+</html>
